@@ -1,0 +1,31 @@
+# 🤖 Requirements - Laboratorio de IA
+# Dependencias para scripts y herramientas de testing
+
+# MQTT Client
+aiomqtt==2.0.0
+
+# HTTP Requests
+requests==2.31.0
+
+# MongoDB Client
+pymongo==4.6.0
+
+# Audio Processing
+wave
+numpy==1.24.3
+
+# Async Support
+asyncio
+
+# JSON Pretty Print
+json5==0.9.14
+
+# Logging
+colorlog==6.8.0
+
+# CLI Tools
+click==8.1.7
+argparse
+
+# Date/Time Utils
+python-dateutil==2.8.2 

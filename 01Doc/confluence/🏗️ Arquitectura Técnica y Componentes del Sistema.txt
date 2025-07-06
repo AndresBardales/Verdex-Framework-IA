@@ -1,0 +1,517 @@
+🏗️ ARQUITECTURA TÉCNICA Y COMPONENTES DEL SISTEMA
+📋 Resumen de la Arquitectura
+El Asistente Voz Realtime está construido sobre una arquitectura de microservicios containerizada que permite escalabilidad, mantenibilidad y flexibilidad en el desarrollo. La solución integra múltiples tecnologías de vanguardia para crear un flujo completo desde la captura de audio hasta la ejecución de acciones automatizadas.
+
+🎯 Diagrama de Arquitectura General
+
+
+graph TB
+    subgraph "Cliente Móvil"
+        A[📱 Flutter App]
+        A1[🎤 Audio Recorder]
+        A2[📡 MQTT Client]
+        A3[🔐 Auth Module]
+        A4[📊 UI Components]
+    end
+    subgraph "Backend Services"
+        B[🔧 FastAPI Gateway]
+        C[🎯 Whisper Service]
+        D[🧠 NLP Processor]
+        E[📊 MongoDB]
+        F[📡 EMQX Broker]
+        G[⚡ n8n Workflows]
+    end
+    subgraph "Integraciones Externas"
+        H[🔗 Atlassian Rovo]
+        I[📅 Google Calendar]
+        J[🔌 MCPs/Webhooks]
+        K[🤖 OpenAI API]
+    end
+    A1 -->|Audio Upload| B
+    B -->|Transcription| C
+    C -->|Text| D
+    D -->|Metadata| E
+    D -->|Trigger| G
+    G -->|Actions| H
+    G -->|Events| I
+    G -->|Custom| J
+    C -->|API Calls| K
+    G -->|Notifications| F
+    F -->|Real-time| A2
+    B -->|Auth| A3
+    E -->|Data| A4
+🔧 Componentes Principales
+📱 1. Aplicación Flutter (Cliente Móvil)
+Responsabilidades:
+🎤 Captura de audio hasta 5 minutos
+
+🔊 Detección de actividad de voz (VAD)
+
+📤 Envío seguro al backend vía HTTPS
+
+📡 Cliente MQTT para notificaciones en tiempo real
+
+🎨 Interfaz de usuario moderna y responsiva
+
+🔐 Autenticación y gestión de sesiones
+
+Tecnologías:
+Framework: Flutter 3.x (Dart)
+
+Audio: flutter_sound package
+
+MQTT: mqtt_client package
+
+HTTP: dio package para API calls
+
+State Management: Provider/Riverpod
+
+Storage: shared_preferences + hive
+
+Estructura de Archivos:
+
+
+lib/
+├── main.dart
+├── models/
+│   ├── audio_recording.dart
+│   └── config_model.dart
+├── providers/
+│   └── audio_provider.dart
+├── screens/
+│   └── home_screen.dart
+├── services/
+│   ├── audio_service.dart
+│   ├── upload_service.dart
+│   ├── connectivity_service.dart
+│   └── config_service.dart
+└── widgets/
+    ├── audio_recording_tile.dart
+    └── connectivity_status.dart
+🔧 2. Backend FastAPI (API Gateway)
+Responsabilidades:
+📥 Recepción de archivos de audio
+
+🔐 Autenticación y autorización de usuarios
+
+🔄 Orquestación de servicios internos
+
+📊 Gestión de metadatos y almacenamiento
+
+📡 Publicación MQTT de eventos
+
+🔍 Logging y monitoreo de operaciones
+
+Tecnologías:
+Framework: FastAPI (Python 3.11+)
+
+Async: asyncio, aiofiles
+
+Database: Motor (async MongoDB driver)
+
+MQTT: paho-mqtt
+
+Auth: JWT tokens, bcrypt
+
+Validation: Pydantic models
+
+Estructura de APIs:
+
+
+# Endpoints principales
+POST /api/v1/auth/login
+POST /api/v1/auth/register
+POST /api/v1/audio/upload
+GET  /api/v1/audio/history
+GET  /api/v1/audio/{id}/transcription
+POST /api/v1/webhooks/n8n
+GET  /api/v1/health
+🎯 3. Servicio de Transcripción (Whisper)
+Responsabilidades:
+🎵 Conversión audio → texto con alta precisión
+
+🌍 Soporte multiidioma (español prioritario)
+
+⚡ Procesamiento asíncrono de archivos
+
+📊 Extracción de metadatos de audio
+
+🔧 Optimización de modelos según recursos
+
+Configuración:
+
+
+# Modelos Whisper disponibles
+WHISPER_MODELS = {
+    "tiny": "39M params - Rápido, menor precisión",
+    "base": "74M params - Balanceado",
+    "small": "244M params - Buena precisión",
+    "medium": "769M params - Alta precisión",
+    "large": "1550M params - Máxima precisión"
+}
+# Configuración por defecto
+DEFAULT_MODEL = "base"  # Para desarrollo
+PRODUCTION_MODEL = "small"  # Para producción
+Integración con OpenAI:
+
+
+# Alternativa cloud para alta demanda
+OPENAI_WHISPER_CONFIG = {
+    "model": "whisper-1",
+    "language": "es",
+    "response_format": "json",
+    "temperature": 0.0
+}
+🧠 4. Procesador NLP (Análisis de Contenido)
+Responsabilidades:
+📝 Clasificación de contenido (personal/trabajo/ideas)
+
+😊 Análisis de sentimiento y tono emocional
+
+🎯 Extracción de entidades (fechas, tareas, personas)
+
+🏷️ Generación de etiquetas automáticas
+
+🔍 Detección de intenciones y acciones
+
+Pipeline de Procesamiento:
+
+
+class NLPPipeline:
+    def process(self, transcription: str) -> ProcessedContent:
+        # 1. Limpieza de texto
+        clean_text = self.clean_text(transcription)
+        # 2. Análisis de sentimiento
+        sentiment = self.analyze_sentiment(clean_text)
+        # 3. Clasificación de categoría
+        category = self.classify_content(clean_text)
+        # 4. Extracción de entidades
+        entities = self.extract_entities(clean_text)
+        # 5. Detección de acciones
+        actions = self.detect_actions(clean_text)
+        return ProcessedContent(
+            text=clean_text,
+            sentiment=sentiment,
+            category=category,
+            entities=entities,
+            actions=actions
+        )
+📊 5. Base de Datos MongoDB
+Esquemas de Datos:
+
+
+// Colección: users
+{
+  "_id": ObjectId,
+  "email": "user@example.com",
+  "password_hash": "bcrypt_hash",
+  "created_at": ISODate,
+  "settings": {
+    "language": "es",
+    "auto_transcribe": true,
+    "notification_preferences": {...}
+  }
+}
+// Colección: recordings
+{
+  "_id": ObjectId,
+  "user_id": ObjectId,
+  "filename": "audio_20250705_123456.wav",
+  "duration": 120.5,
+  "transcription": "Texto transcrito...",
+  "metadata": {
+    "sentiment": "positive",
+    "category": "work",
+    "confidence": 0.95,
+    "entities": [...],
+    "actions": [...]
+  },
+  "status": "completed",
+  "created_at": ISODate,
+  "processed_at": ISODate
+}
+// Colección: automations
+{
+  "_id": ObjectId,
+  "user_id": ObjectId,
+  "recording_id": ObjectId,
+  "workflow_id": "n8n_workflow_123",
+  "actions_executed": [
+    {
+      "type": "jira_create_issue",
+      "status": "success",
+      "response": {...}
+    }
+  ],
+  "created_at": ISODate
+}
+Índices Optimizados:
+
+
+// Índices para performance
+db.recordings.createIndex({"user_id": 1, "created_at": -1})
+db.recordings.createIndex({"metadata.category": 1})
+db.recordings.createIndex({"transcription": "text"})  // Full-text search
+📡 6. Broker MQTT (EMQX)
+Estructura de Topics:
+
+
+asistente/
+├── users/{user_id}/
+│   ├── notifications/        # Notificaciones generales
+│   ├── transcriptions/      # Resultados de transcripción
+│   ├── automations/         # Estado de automatizaciones
+│   └── system/              # Mensajes del sistema
+├── global/
+│   ├── announcements/       # Anuncios globales
+│   └── maintenance/         # Mantenimiento del sistema
+└── integrations/
+    ├── n8n/                 # Eventos de n8n
+    └── external/            # Servicios externos
+Configuración de Seguridad:
+
+
+# emqx.conf
+authentication:
+  - mechanism: password_based
+    backend: mongodb
+    collection: mqtt_users
+authorization:
+  - type: mongodb
+    collection: mqtt_acl
+ssl:
+  enable: true
+  certfile: /opt/emqx/etc/certs/cert.pem
+  keyfile: /opt/emqx/etc/certs/key.pem
+⚡ 7. Automatización n8n
+Workflows Principales:
+🔄 Workflow 1: Procesamiento de Audio
+
+
+
+{
+  "name": "Audio Processing Pipeline",
+  "nodes": [
+    {
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "parameters": {
+        "path": "audio-processed"
+      }
+    },
+    {
+      "name": "Content Classifier",
+      "type": "n8n-nodes-base.function",
+      "parameters": {
+        "functionCode": "// Lógica de clasificación"
+      }
+    },
+    {
+      "name": "Jira Integration",
+      "type": "n8n-nodes-base.jira",
+      "parameters": {
+        "operation": "create",
+        "resource": "issue"
+      }
+    },
+    {
+      "name": "MQTT Notification",
+      "type": "n8n-nodes-base.mqtt",
+      "parameters": {
+        "topic": "asistente/users/{{$json.user_id}}/notifications"
+      }
+    }
+  ]
+}
+📅 Workflow 2: Gestión de Calendario
+
+
+
+{
+  "name": "Calendar Management",
+  "nodes": [
+    {
+      "name": "Date Extractor",
+      "type": "n8n-nodes-base.function"
+    },
+    {
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "parameters": {
+        "operation": "create",
+        "resource": "event"
+      }
+    }
+  ]
+}
+🔐 Seguridad y Autenticación
+Flujo de Autenticación:
+
+
+sequenceDiagram
+    participant A as Flutter App
+    participant B as FastAPI
+    participant C as MongoDB
+    A->>B: POST /auth/login (email, password)
+    B->>C: Verify credentials
+    C-->>B: User data
+    B-->>A: JWT token + refresh token
+    Note over A: Store tokens securely
+    A->>B: API calls with Authorization header
+    B->>B: Validate JWT
+    B-->>A: Protected resource
+Medidas de Seguridad Implementadas:
+🔒 HTTPS/TLS en todas las comunicaciones
+
+🔑 JWT tokens con expiración automática
+
+🛡️ Rate limiting en APIs críticas
+
+🔐 Cifrado de datos sensibles en MongoDB
+
+📝 Logs de auditoría para acciones críticas
+
+🚫 Validación de entrada con Pydantic
+
+📈 Escalabilidad y Performance
+Estrategias de Escalado:
+Horizontal Scaling:
+
+
+# docker-compose.scale.yml
+version: '3.8'
+services:
+  fastapi:
+    deploy:
+      replicas: 3
+  whisper:
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          memory: 4G
+          cpus: '2.0'
+Caching Strategy:
+
+
+# Redis para cache de transcripciones frecuentes
+CACHE_CONFIG = {
+    "redis_url": "redis://localhost:6379",
+    "default_ttl": 3600,  # 1 hora
+    "max_memory": "2gb"
+}
+Load Balancing:
+
+
+# nginx.conf
+upstream fastapi_backend {
+    server fastapi_1:8000;
+    server fastapi_2:8000;
+    server fastapi_3:8000;
+}
+server {
+    listen 80;
+    location / {
+        proxy_pass http://fastapi_backend;
+    }
+}
+🔧 Configuración de Desarrollo
+Docker Compose Setup:
+
+
+version: '3.8'
+services:
+  app:
+    build: ./audio_recorder_app
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGODB_URL=mongodb://mongo:27017
+      - MQTT_BROKER=emqx:1883
+    depends_on:
+      - mongo
+      - emqx
+  mongo:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  emqx:
+    image: emqx/emqx:5
+    ports:
+      - "1883:1883"
+      - "18083:18083"
+  n8n:
+    image: n8nio/n8n
+    ports:
+      - "5678:5678"
+    environment:
+      - N8N_BASIC_AUTH_ACTIVE=true
+    volumes:
+      - n8n_data:/home/node/.n8n
+volumes:
+  mongo_data:
+  n8n_data:
+📊 Monitoreo y Observabilidad
+Métricas Clave:
+⏱️ Latencia de transcripción por modelo
+
+📈 Throughput de requests por segundo
+
+💾 Uso de memoria en servicios Whisper
+
+📡 Conexiones MQTT activas
+
+🔄 Tasa de éxito de automatizaciones
+
+Logging Structure:
+
+
+{
+  "timestamp": "2025-07-05T18:30:00Z",
+  "level": "INFO",
+  "service": "fastapi",
+  "user_id": "user_123",
+  "action": "audio_upload",
+  "duration_ms": 1250,
+  "file_size_mb": 2.3,
+  "status": "success"
+}
+🚀 Próximos Pasos Técnicos
+Sprint 1 - Implementación Core:
+✅ Setup completo de Docker Compose
+
+✅ API básica de upload de audio
+
+✅ Integración Whisper local
+
+✅ Cliente MQTT en Flutter
+
+✅ Workflow n8n básico
+
+Sprint 2 - Optimización:
+🔄 Caching con Redis
+
+🔄 Rate limiting avanzado
+
+🔄 Monitoreo con Prometheus
+
+🔄 CI/CD pipeline
+
+Sprint 3+ - Escalabilidad:
+📈 Kubernetes deployment
+
+📈 Auto-scaling de servicios
+
+📈 Multi-region setup
+
+📈 Advanced analytics
+
+Documentación técnica actualizada: Julio 5, 2025

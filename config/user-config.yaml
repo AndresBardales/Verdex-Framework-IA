@@ -1,0 +1,85 @@
+# 🔧 Asistente Voz Realtime v1.0 - User Configuration
+# Este archivo controla TODA la configuración del sistema
+# Modifica aquí y ejecuta: ./scripts/apply-config.sh
+
+# 📱 Configuración de Grabación
+recording:
+  max_duration_seconds: 60        # Duración máxima de grabación (60 = 1 minuto)
+  auto_upload: true               # Subir automáticamente después de grabar
+  delete_after_upload: true       # Borrar archivo local después de subir
+  check_interval_seconds: 10      # Intervalo de verificación de estado
+
+# 🌐 URLs y Endpoints (se actualizan automáticamente con tu IP local)
+network:
+  local_ip: "192.168.3.3"
+  backend_port: 5005              # Puerto del backend FastAPI
+  auth_port: 8001                 # Puerto del Auth Service 🔐
+  n8n_port: 5678                  # Puerto de n8n
+  mqtt_port: 1883                 # Puerto MQTT
+  emqx_dashboard_port: 18083      # Puerto dashboard EMQX
+  mongodb_port: 27017             # Puerto MongoDB
+
+# 🔐 Authentication Service Configuration
+auth:
+  jwt_expiry_days: 7              # Días antes de que expire el token JWT
+  password_min_length: 8          # Longitud mínima de contraseña
+  verification_code_expiry_minutes: 15  # Minutos para código de verificación
+  password_reset_expiry_minutes: 30     # Minutos para código de reset
+  enable_email_verification: true       # Requiere verificación de email
+  allow_password_reset: true             # Permite reset de contraseña
+
+# 📡 MQTT Configuration
+mqtt:
+  base_topic: "audio"             # Topic base (audio/transcription/user)
+  user_id: "single-user"          # ID de usuario (v1.0 single user)
+  qos: 1                          # Quality of Service MQTT
+  retain: false                   # Retener mensajes
+
+# 🤖 Whisper & AI Configuration  
+ai:
+  whisper_model: "base"           # tiny, base, small, medium, large
+  language: "es"                  # Idioma principal (es, en, etc.)
+  temperature: 0.0                # Creatividad del modelo (0.0-1.0)
+  confidence_threshold: 0.7       # Umbral mínimo de confianza
+
+# 🔄 n8n Webhooks
+webhooks:
+  audio_processing: "/webhook/audio"           # Webhook principal de audio
+  transcription_complete: "/webhook/transcript" # Webhook específico de transcripción
+  task_creation: "/webhook/task"               # Webhook de creación de tareas
+  custom_webhook: "/webhook-test/26334846-b4be-489f-a5bd-caf10aaf63d6"  # Tu webhook personalizado
+
+# 🗄️ Database Configuration
+database:
+  name: "audio_productivity"      # Nombre de la base de datos
+  collections:
+    recordings: "audio_recordings" # Colección de grabaciones
+    users: "users"                # Colección de usuarios
+    tasks: "tasks"                # Colección de tareas
+
+# 🔧 Debug & Development
+debug:
+  show_debug_info: true           # Mostrar información de debug en la app
+  log_level: "INFO"               # DEBUG, INFO, WARNING, ERROR
+  enable_cors: true               # Habilitar CORS para desarrollo
+  
+# 📊 Monitoring
+monitoring:
+  enable_mqtt_monitor: true       # Habilitar monitor MQTT
+  log_all_requests: true          # Loggear todas las requests
+  performance_metrics: true       # Métricas de rendimiento
+
+# 🎯 Features Enabled
+features:
+  emotion_analysis: true          # Análisis emocional
+  entity_extraction: true         # Extracción de entidades
+  task_creation: true             # Creación automática de tareas
+  calendar_integration: false     # Integración con calendario (v2.0)
+  llm_processing: true            # Procesamiento con LLM adicional
+
+# 🔗 External Services (para v2.0)
+external:
+  openai_api_key: ""              # Dejar vacío para usar Whisper local
+  google_calendar_enabled: false  # Integración Google Calendar
+  slack_webhook: ""               # Webhook de Slack
+  notion_api_key: ""              # API Key de Notion 
