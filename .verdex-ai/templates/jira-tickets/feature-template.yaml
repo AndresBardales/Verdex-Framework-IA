@@ -1,0 +1,125 @@
+# ✨ Verdex Framework IA - Plantilla Feature Request
+# Usar esta plantilla para crear tickets de nuevas features procesadas por agentes IA
+
+ticket_type: "Story"
+priority: "Medium"
+
+# Campos obligatorios
+fields:
+  summary: "[FEATURE] {{titulo_feature}}"
+  
+  description: |
+    ## ✨ Descripción de la Feature
+    {{descripcion_detallada}}
+    
+    ## 🎯 Objetivo de Negocio
+    {{objetivo_negocio}}
+    
+    ## 👥 Usuario Objetivo
+    **Como** {{tipo_usuario}}
+    **Quiero** {{funcionalidad_deseada}}
+    **Para** {{beneficio_obtenido}}
+    
+    ## 📋 Criterios de Aceptación
+    - [ ] {{criterio_1}}
+    - [ ] {{criterio_2}}
+    - [ ] {{criterio_3}}
+    - [ ] {{criterio_4}}
+    
+    ## 🛠️ Notas Técnicas
+    {{notas_tecnicas}}
+    
+    ## 🔗 Dependencias
+    {{dependencias}}
+    
+    ## 🎨 Consideraciones de UX/UI
+    {{consideraciones_ux}}
+    
+    ## 📊 Información del Framework
+    - **Verdex Framework IA**: Solicitud procesada por agente IA
+    - **Fecha de Creación**: {{fecha}}
+    - **ID del Agente**: {{agent_id}}
+    - **Sesión**: {{session_id}}
+    - **Estimación Inicial**: {{estimacion}}
+    
+    ## 📎 Recursos Adicionales
+    {{recursos_adicionales}}
+
+  labels:
+    - "enhancement"
+    - "ai-processed"
+    - "verdex-framework"
+    - "{{categoria_feature}}"
+    - "{{prioridad_negocio}}"
+  
+  # Campos de gestión
+  assignee: "{{assignee_id}}"
+  reporter: "{{reporter_id}}"
+  
+  # Componentes del proyecto
+  components:
+    - "{{componente_principal}}"
+  
+  # Versión objetivo
+  fix_version: "{{version_objetivo}}"
+  
+  # Story Points (estimación)
+  story_points: "{{story_points}}"
+  
+  # Epic link (si aplica)
+  epic_link: "{{epic_id}}"
+
+# Configuración de workflow
+workflow:
+  initial_status: "Backlog"
+  require_approval: true
+  notify_stakeholders: true
+
+# Plantillas de criterios por tipo de feature
+criteria_templates:
+  frontend:
+    - "La interfaz debe ser responsive en mobile y desktop"
+    - "Debe seguir las guías de diseño establecidas"
+    - "Debe incluir validación de formularios"
+    - "Debe tener indicadores de carga"
+  
+  backend:
+    - "La API debe responder en menos de 2 segundos"
+    - "Debe incluir validación de datos de entrada"
+    - "Debe tener logging adecuado"
+    - "Debe incluir tests unitarios"
+  
+  database:
+    - "Los cambios deben ser retrocompatibles"
+    - "Debe incluir scripts de migración"
+    - "Debe mantener integridad referencial"
+    - "Debe incluir índices para optimización"
+
+# Variables de ejemplo
+example_variables:
+  titulo_feature: "Sistema de notificaciones en tiempo real"
+  descripcion_detallada: "Implementar un sistema que permita a los usuarios recibir notificaciones en tiempo real sobre eventos importantes"
+  objetivo_negocio: "Mejorar la experiencia del usuario y aumentar el engagement"
+  tipo_usuario: "usuario registrado"
+  funcionalidad_deseada: "recibir notificaciones en tiempo real"
+  beneficio_obtenido: "estar siempre informado de eventos importantes"
+  criterio_1: "Las notificaciones deben aparecer sin recargar la página"
+  criterio_2: "Debe haber diferentes tipos de notificaciones (info, warning, error)"
+  criterio_3: "El usuario debe poder marcar notificaciones como leídas"
+  criterio_4: "Debe funcionar en todos los navegadores modernos"
+  notas_tecnicas: "Usar WebSockets para comunicación en tiempo real"
+  dependencias: "Configuración del servidor WebSocket"
+  consideraciones_ux: "Las notificaciones no deben ser intrusivas"
+  fecha: "2025-01-07"
+  agent_id: "claude-sonnet"
+  session_id: "session_001"
+  estimacion: "5-8 horas"
+  recursos_adicionales: "Documentación de WebSockets API"
+  categoria_feature: "real-time"
+  prioridad_negocio: "high-impact"
+  assignee_id: ""
+  reporter_id: "ai-agent"
+  componente_principal: "Notifications"
+  version_objetivo: "1.3.0"
+  story_points: "5"
+  epic_id: "" 
