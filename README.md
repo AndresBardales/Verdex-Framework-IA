@@ -19,16 +19,49 @@ Un framework revolucionario para colaboración inteligente entre humanos y agent
 curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
 ```
 
-### 🔄 Instalación Manual
+> **📋 Lo que hace**: Descarga e instala automáticamente el framework en tu proyecto actual
+
+### 🔄 Instalación Manual (Si curl falla)
 
 ```bash
-# Descargar script
+# Opción 1: wget
 wget https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh
-
-# Hacer ejecutable y instalar
 chmod +x verdex-ai-setup.sh
 ./verdex-ai-setup.sh
+
+# Opción 2: git clone
+git clone https://github.com/AndresBardales/Verdex-Framework-IA.git
+cd Verdex-Framework-IA
+./verdex-ai-setup.sh
+cd .. && rm -rf Verdex-Framework-IA
 ```
+
+### ✅ Verificación Post-Instalación
+
+```bash
+# Verificar que todo funciona
+.verdex-ai/scripts/health-check.sh
+
+# Deberías ver: "✅ Framework funcionando perfectamente"
+```
+
+### 🚀 Primeros Pasos Después de Instalar
+
+```bash
+# 1. Ver qué se instaló
+ls -la .verdex-ai/
+
+# 2. Leer el protocolo para agentes IA
+cat VERDEX_AI_AGENT_GUIDE.md
+
+# 3. Verificar configuración detectada
+cat .verdex-ai/config/framework-settings.yaml
+
+# 4. Revisar integraciones MCP disponibles
+.verdex-ai/scripts/verify-connections.sh
+```
+
+> **🎯 ¡Ya estás listo!** El framework está configurado y funcionando. Los agentes IA ahora seguirán protocolos profesionales en tu proyecto.
 
 ---
 
@@ -226,38 +259,70 @@ cd .verdex-ai/lab/testing
 
 ## 📋 Solución de Problemas
 
-### ❌ **Error: curl 404**
+### ❌ **Error: `curl: (22) The requested URL returned error: 404`**
+
+**Causa**: Cache de GitHub o URL incorrecta.
 
 ```bash
-# Verificar URL
+# 1. Verificar URL manualmente
 curl -I https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh
 
-# Instalación manual alternativa
+# 2. Si hay cache, usar instalación manual
 git clone https://github.com/AndresBardales/Verdex-Framework-IA.git
 cd Verdex-Framework-IA
 ./verdex-ai-setup.sh
+cd .. && rm -rf Verdex-Framework-IA
 ```
 
-### ❌ **Error: BASH_SOURCE unbound**
+### ❌ **Error: `bash: line 732: BASH_SOURCE[0]: unbound variable`**
 
-Si ves este error, significa que estás usando una versión cached. Espera 5-10 minutos o usa instalación manual.
+**Causa**: Cache de GitHub con versión antigua del script.
 
-### ❌ **Error: Permisos**
+**Soluciones**:
+```bash
+# Opción 1: Esperar 10-15 minutos y reintentar
+curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
+
+# Opción 2: Instalación manual inmediata
+wget https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh
+chmod +x verdex-ai-setup.sh
+./verdex-ai-setup.sh
+```
+
+### ❌ **Error: Permission denied**
 
 ```bash
-# Asegurar permisos de escritura
+# Verificar permisos del directorio
+ls -la
 chmod +w .
-./verdex-ai-setup.sh
+
+# Si sigues teniendo problemas
+sudo ./verdex-ai-setup.sh  # Solo como último recurso
 ```
 
-### ✅ **Health Check Falla**
+### ❌ **Health Check Falla**
 
 ```bash
-# Reinstalar framework
+# 1. Reinstalar framework limpio
+rm -rf .verdex-ai VERDEX_AI_AGENT_GUIDE.md
 ./verdex-ai-setup.sh
 
-# Verificar MCP
+# 2. Verificar integraciones MCP
 .verdex-ai/scripts/verify-connections.sh
+
+# 3. Si persiste, verificar estructura manualmente
+tree .verdex-ai -L 2
+```
+
+### ❌ **Framework no detecta MCP**
+
+```bash
+# Verificar que Cursor esté configurado
+cat ~/.cursor/mcp.json
+
+# Si no existe, configurar MCP en Cursor primero
+# Luego reinstalar framework:
+./verdex-ai-setup.sh
 ```
 
 ---
