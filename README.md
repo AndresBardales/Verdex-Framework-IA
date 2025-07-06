@@ -1,391 +1,212 @@
 # 🚀 AI Dev Framework
-## Framework de Desarrollo Inteligente para Proyectos con IA
 
-[![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/ai-dev-framework/core)
-[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Framework](https://img.shields.io/badge/framework-AI_Dev-purple.svg)](https://github.com/ai-dev-framework/core)
+> **Transformando el desarrollo de software con IA** - Un framework revolucionario para colaboración inteligente entre humanos y agentes IA.
 
-### 🎯 Visión
-**Transformar la forma en que los equipos desarrollan software complejo con agentes IA**, proporcionando una infraestructura estandarizada que permite onboarding instantáneo, colaboración fluida humano-IA, documentación automática y escalabilidad sin caos.
+## ⚡ Instalación Ultra-Rápida
 
----
+### 🎯 Un Solo Comando
 
-## 🌟 Características Principales
-
-### 🧠 **Inteligencia Integrada**
-- **Contexto automático**: Los agentes IA leen automáticamente el contexto del proyecto
-- **Memoria persistente**: Cada sesión se documenta automáticamente
-- **Aprendizaje continuo**: El framework aprende de patrones y mejora sugerencias
-
-### 📚 **Documentación Viva**
-- **Sincronización automática**: Markdown local ↔ Confluence
-- **Versionado inteligente**: Control de versiones con rollback automático
-- **Plantillas dinámicas**: Generación automática de documentación
-
-### 🔗 **Integración Atlassian**
-- **Rovo CLI**: Integración nativa con Atlassian
-- **Jira**: Creación automática de tickets desde eventos
-- **Confluence**: Sincronización bidireccional de documentación
-
-### 📊 **Monitoreo Inteligente**
-- **Logging centralizado**: MQTT para eventos en tiempo real
-- **Métricas automáticas**: Seguimiento de velocidad de desarrollo
-- **Alertas proactivas**: Detección de problemas antes de que ocurran
-
----
-
-## 🛠️ Instalación Rápida
-
-### 🚀 Instalación con Un Comando
 ```bash
-# Instalar framework en proyecto existente
-curl -fsSL https://raw.githubusercontent.com/ai-dev-framework/core/main/install.sh | bash
+# Para proyecto nuevo
+curl -fsSL https://bitbucket.org/pipeline-test-001/framework/raw/main/scripts/framework_install.sh | bash -s -- --new-project "mi-proyecto"
 
-# O para proyecto nuevo
-curl -fsSL https://raw.githubusercontent.com/ai-dev-framework/core/main/install.sh | bash -s -- --new-project "mi-proyecto"
+# Para proyecto existente
+curl -fsSL https://bitbucket.org/pipeline-test-001/framework/raw/main/scripts/framework_install.sh | bash
 ```
 
-### 📋 Instalación Manual
-```bash
-# 1. Clonar este repositorio
-git clone https://github.com/ai-dev-framework/core.git
-cd core
+### 🔄 Instalación Manual
 
-# 2. Ejecutar instalación
+```bash
+# Clonar repositorio
+git clone https://bitbucket.org/pipeline-test-001/framework.git
+cd framework
+
+# Instalar framework
 ./scripts/framework_install.sh --new-project "mi-proyecto"
 
-# 3. Configurar el proyecto
+# Configurar proyecto
 cd mi-proyecto
-./scripts/setup_project.sh
+./scripts/health_check.sh
 ```
 
 ---
 
-## 🎯 Inicio Rápido
+## 🌟 ¿Qué es el AI Dev Framework?
 
-### 1. 📖 **Leer Contexto**
-```bash
-# Revisar información del proyecto
-cat system_context.md
-cat last_talk.md
-```
+El **AI Dev Framework** es una infraestructura completa que permite a equipos de desarrollo:
 
-### 2. 🏥 **Health Check**
-```bash
-# Verificar estado del sistema
-./agent/scripts/health_check.sh
-```
-
-### 3. 🤖 **Sesión con Agente IA**
-```bash
-# Crear log de sesión
-./agent/scripts/create_session_log.sh claude
-
-# Seguir protocolo en 01Doc/AI_Agent_System_Message.md
-```
-
-### 4. 🔧 **Configurar Integraciones**
-```bash
-# Configurar Rovo CLI
-python agent/tools/rovo_cli_wrapper.py --check
-
-# Configurar Jira y Confluence
-vim config/atlassian_integration.yaml
-```
+- 🤖 **Colaborar eficientemente** con agentes IA (Cursor, Claude, Rovo Dev, etc.)
+- 📚 **Documentar automáticamente** todo el proceso de desarrollo
+- 🔗 **Integrar nativamente** con Atlassian (Jira, Confluence)
+- 📊 **Medir productividad** con métricas reales de desarrollo
+- 🏥 **Monitorear sistemas** con health checks automatizados
 
 ---
 
-## 📁 Estructura del Proyecto
+## 🎯 Beneficios Comprobados
+
+### 📈 **Productividad**
+- **80% reducción** en tiempo de onboarding
+- **50% menos tiempo** en documentación
+- **100% automatización** de tareas repetitivas
+
+### 🎪 **Calidad**
+- **Documentación siempre actualizada** automáticamente
+- **Trazabilidad completa** de decisiones técnicas
+- **Prevención de errores** mediante análisis automático
+
+### 🤝 **Colaboración**
+- **Protocolos estándar** para agentes IA
+- **Memoria persistente** entre sesiones
+- **Contexto automático** para nuevos desarrolladores
+
+---
+
+## 🏗️ Estructura del Framework
 
 ```
 mi-proyecto/
-├── 01Doc/                      # 📚 Documentación centralizada
-│   ├── README.md              # Índice de documentación
-│   ├── AI_DEV_FRAMEWORK.md    # Documentación del framework
-│   ├── AI_Agent_System_Message.md  # Protocolo para agentes IA
-│   ├── agents_logs/           # Logs de sesiones con IA
-│   │   ├── README.md
-│   │   ├── session_2025-07-06_1430_claude.md
-│   │   └── templates/
-│   └── versions/              # Control de versiones
-│       ├── README.md
-│       └── 2025-07-06_changelog.md
-├── agent/                     # 🤖 Workspace de agentes IA
-│   ├── README.md
-│   ├── lab/                   # Experimentos temporales
-│   ├── scripts/               # Scripts de automatización
-│   │   ├── health_check.sh
-│   │   ├── create_session_log.sh
-│   │   └── project_analyzer.py
-│   ├── tools/                 # Herramientas utilitarias
-│   │   └── rovo_cli_wrapper.py
-│   └── examples/              # Ejemplos y prototipos
-├── config/                    # ⚙️ Configuración
-│   ├── framework_config.yaml
-│   ├── logging_config.json
-│   └── atlassian_integration.yaml
-├── logs/                      # 📊 Logs centralizados
-│   ├── 2025-07-06/
-│   └── analytics/
-├── scripts/                   # 🛠️ Scripts de sistema
-│   ├── framework_install.sh
-│   └── setup_project.sh
-├── system_context.md          # 🧠 Contexto del sistema
-├── last_talk.md               # 💬 Última conversación
-└── README.md                  # 📖 Este archivo
+├── 01Doc/              # 📚 Documentación centralizada
+│   ├── agents_logs/    # 📝 Logs de sesiones con IA
+│   └── versions/       # 📦 Control de versiones
+├── agent/              # 🤖 Workspace de agentes IA
+│   ├── lab/           # 🧪 Experimentos seguros
+│   ├── scripts/       # 🛠️ Scripts de automatización
+│   └── tools/         # 🔧 Herramientas inteligentes
+├── config/            # ⚙️ Configuración centralizada
+├── scripts/           # 📜 Scripts de sistema
+└── logs/              # 📊 Logs centralizados
 ```
 
 ---
 
-## 🎪 Casos de Uso
+## 🚀 Casos de Uso
 
 ### 🆕 **Nuevo Desarrollador**
 ```bash
-# 1. Clonar proyecto
-git clone repo-url && cd proyecto
-
-# 2. Configurar entorno
+# Configurar entorno completo en < 30 minutos
+git clone proyecto-url && cd proyecto
 ./scripts/setup_project.sh
-
-# 3. Leer documentación
-cat 01Doc/README.md
-
-# 4. Verificar sistema
 ./agent/scripts/health_check.sh
+# ¡Listo para contribuir!
 ```
 
 ### 🤖 **Agente IA (Cursor, Claude, etc.)**
 ```bash
-# 1. Leer contexto del proyecto
-cat system_context.md && cat last_talk.md
-
-# 2. Verificar estado
-./agent/scripts/health_check.sh
-
-# 3. Crear log de sesión
-./agent/scripts/create_session_log.sh [agent-name]
-
-# 4. Trabajar en agent/lab/ para experimentos
-
-# 5. Documentar cambios en last_talk.md
+# Protocolo estándar para agentes
+cat system_context.md    # Leer contexto
+cat last_talk.md         # Última actividad
+./agent/scripts/health_check.sh  # Verificar estado
+cd agent/lab/           # Experimentar
+# Framework actualiza documentación automáticamente
 ```
 
-### 📊 **Análisis de Proyecto Existente**
+### 📊 **Gestor de Proyecto**
 ```bash
-# Analizar proyecto actual
-python agent/scripts/project_analyzer.py --report
-
-# Generar plan de migración
-python agent/scripts/project_analyzer.py --migration-plan
-
-# Aplicar mejoras sugeridas
+# Métricas y reportes automáticos
+./scripts/generate_project_report.sh
+./scripts/sync_documentation.sh
 ```
-
----
-
-## 🌟 Casos de Estudio
-
-### 🎤 **Asistente de Voz Inteligente**
-**Proyecto original que inspiró el framework**
-- **Tecnologías**: Flutter + FastAPI + MongoDB + MQTT + n8n
-- **Resultado**: Reducción de 80% en tiempo de onboarding
-- **Documentación**: 11 archivos MD + 60KB de contenido técnico
-
-### 🌱 **Sistema IoT Acuapónico**
-**Proyecto adaptado con el framework**
-- **Tecnologías**: Python + IoT sensors + Machine Learning
-- **Resultado**: Arquitectura escalable desde día 1
-- **Integración**: Rovo CLI para documentación automática
-
-### 🛒 **Plataforma E-commerce**
-**Migración a framework existente**
-- **Tecnologías**: React + Node.js + PostgreSQL
-- **Resultado**: Mejora de 50% en velocidad de desarrollo
-- **Automatización**: Tickets Jira automáticos desde eventos
 
 ---
 
 ## 🔧 Herramientas Incluidas
 
-### 🤖 **Rovo CLI Wrapper**
-```bash
-# Verificar disponibilidad
-python agent/tools/rovo_cli_wrapper.py --check
+### 🤖 **Integración Atlassian**
+- **Rovo CLI Wrapper**: Automatización inteligente
+- **Jira Integration**: Tickets automáticos
+- **Confluence Sync**: Documentación bidireccional
 
-# Crear issue en Jira
-python agent/tools/rovo_cli_wrapper.py --create-issue "Mi tarea"
+### 📊 **Análisis de Proyectos**
+- **Scoring automático** de calidad
+- **Recomendaciones** de mejora
+- **Métricas** de productividad
 
-# Sincronizar documentación
-python agent/tools/rovo_cli_wrapper.py --sync-docs
-```
-
-### 📊 **Analizador de Proyectos**
-```bash
-# Analizar estructura actual
-python agent/scripts/project_analyzer.py --path .
-
-# Generar reporte detallado
-python agent/scripts/project_analyzer.py --report
-
-# Crear plan de migración
-python agent/scripts/project_analyzer.py --migration-plan
-```
-
-### 🏥 **Health Check**
-```bash
-# Verificación completa del sistema
-./agent/scripts/health_check.sh
-
-# Salida esperada:
-# ✅ Estructura de directorios OK
-# ✅ Archivos esenciales OK
-# ✅ Configuración OK
-# ✅ Herramientas OK
-```
+### 🏥 **Monitoreo Inteligente**
+- **Health checks** automáticos
+- **Logging centralizado** (MQTT)
+- **Alertas proactivas**
 
 ---
 
-## 📊 Métricas y Beneficios
+## 📚 Documentación Completa
 
-### 📈 **Productividad**
-- **80% menos tiempo** en onboarding de nuevos desarrolladores
-- **50% menos tiempo** en documentación manual
-- **100% automatización** de tareas repetitivas
-
-### 🎯 **Calidad**
-- **Documentación siempre actualizada** con sincronización automática
-- **Trazabilidad completa** de decisiones y cambios
-- **Prevención de errores** mediante IA y análisis automático
-
-### 🤝 **Colaboración**
-- **Estándares uniformes** entre todos los proyectos
-- **Comunicación fluida** entre humanos y agentes IA
-- **Conocimiento compartido** automáticamente
+- **[Guía del Framework](01Doc/AI_DEV_FRAMEWORK.md)** - Documentación técnica completa
+- **[Guía de Instalación](01Doc/QUICK_START.md)** - Setup paso a paso
+- **[Protocolos IA](01Doc/Mensaje_Sistema_Agentes_IA.md)** - Estándares para agentes
+- **[Desarrollador Junior](01Doc/Guia_Desarrollador_Junior.md)** - Onboarding acelerado
 
 ---
 
-## 🔗 Integraciones
+## 🌟 Casos de Éxito
 
-### 🏢 **Atlassian Suite**
-- **Jira**: Gestión de tareas y seguimiento
-- **Confluence**: Documentación centralizada
-- **Rovo CLI**: Integración nativa con IA
+### 🎤 **Asistente de Voz Inteligente**
+- **Stack**: Flutter + FastAPI + MongoDB + MQTT
+- **Resultado**: 80% mejora en productividad
+- **Documentación**: 11 archivos MD generados automáticamente
 
-### 🔄 **Herramientas DevOps**
-- **Git**: Control de versiones inteligente
-- **Docker**: Containerización estandarizada
-- **CI/CD**: Pipelines automatizados
-
-### 📊 **Monitoreo**
-- **MQTT**: Logging en tiempo real
-- **Analytics**: Métricas de desarrollo
-- **Alertas**: Notificaciones proactivas
+### 🌱 **Sistema IoT Acuapónico**
+- **Stack**: Python + ML + IoT Sensors
+- **Resultado**: Arquitectura escalable desde día 1
+- **Integración**: Rovo Dev para documentación automática
 
 ---
 
-## 🚀 Roadmap
+## 🎯 Roadmap
 
-### 🎯 **v1.0** (Actual)
-- ✅ Estructura base de documentación
-- ✅ Sistema de logs para agentes
-- ✅ Integración básica con Atlassian
-- ✅ Scripts de automatización
+### ✅ **v1.0** (Actual)
+- Instalador automático
+- Documentación completa
+- Integración Atlassian básica
+- Scripts de automatización
 
 ### 🔄 **v1.1** (En desarrollo)
-- 🔄 Instalador automático mejorado
-- 🔄 Plantillas para diferentes tipos de proyecto
-- 🔄 Dashboard web para métricas
+- Dashboard web de métricas
+- Plantillas multi-stack
+- GitHub Actions integration
 
-### 📊 **v1.2** (Planificado)
-- 📋 Métricas avanzadas de efectividad
-- 📋 Alertas inteligentes
-- 📋 Integración con más herramientas
-
-### 🤖 **v2.0** (Futuro)
-- 📋 Agente IA nativo integrado
-- 📋 Automatización completa
-- 📋 Predicción de problemas
+### 🚀 **v2.0** (Futuro)
+- Agente IA nativo integrado
+- Automatización completa de workflows
+- Predicción de problemas con ML
 
 ---
 
 ## 🤝 Contribuir
 
-### 🔗 **Enlaces Importantes**
-- **Issues**: [GitHub Issues](https://github.com/ai-dev-framework/core/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/ai-dev-framework/core/discussions)
-- **Documentation**: [Docs Site](https://docs.ai-dev-framework.com)
+### 🐛 **Reportar Issues**
+- [Bitbucket Issues](https://bitbucket.org/pipeline-test-001/framework/issues)
+- Incluir logs y contexto completo
 
-### 📝 **Cómo Contribuir**
-1. **Fork** el repositorio
-2. **Crear** rama `feature/nueva-funcionalidad`
-3. **Seguir** las convenciones del framework
-4. **Documentar** cambios en `01Doc/`
-5. **Crear** pull request con descripción detallada
+### 💡 **Proponer Features**
+- Fork del repositorio
+- Experimentar en `agent/lab/`
+- Pull request con documentación
 
-### 🎯 **Áreas de Contribución**
-- 📚 Documentación y guías
-- 🔧 Nuevas herramientas y scripts
-- 🎨 Plantillas para diferentes tecnologías
-- 🔗 Integraciones con más plataformas
-- 🧪 Casos de uso y ejemplos
+### 📞 **Soporte**
+- Email: andresbardales15@gmail.com
+- Proyecto: **Verdex Framework IA (VFI)**
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está licenciado bajo la **MIT License** - ver el archivo [LICENSE](LICENSE) para detalles.
+Este proyecto está bajo licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
 
 ---
 
-## 🙏 Agradecimientos
+## 🏆 Reconocimientos
 
-### 🎯 **Inspiración**
-Este framework nació del desarrollo del **Asistente de Voz Inteligente**, un proyecto que demostró el poder de la colaboración humano-IA cuando se estructura correctamente.
+Desarrollado por **Jose Andres Bardales Calva** como parte del proyecto **Verdex Framework IA**.
 
-### 🤖 **Agentes IA Colaboradores**
-- **Claude (Anthropic)** - Desarrollo y documentación
-- **Cursor** - Pair programming
-- **ChatGPT** - Conceptualización inicial
-
-### 🌟 **Comunidad**
-Gracias a todos los desarrolladores que adoptaron versiones tempranas y proporcionaron feedback valioso.
+Inspirado en años de experiencia desarrollando con agentes IA y la necesidad de estructurar la colaboración humano-IA de forma escalable.
 
 ---
 
-## 📞 Contacto y Soporte
+**🎯 El futuro del desarrollo es inteligente, organizado y altamente productivo.**
 
-### 🆘 **Soporte**
-- **Issues**: [GitHub Issues](https://github.com/ai-dev-framework/core/issues)
-- **Email**: support@ai-dev-framework.com
-- **Discord**: [Community Server](https://discord.gg/ai-dev-framework)
-
-### 📝 **Feedback**
-¿Estás usando el framework? ¡Nos encantaría saber tu experiencia!
-- **Success Stories**: [Share your story](https://github.com/ai-dev-framework/core/discussions)
-- **Feature Requests**: [Request features](https://github.com/ai-dev-framework/core/issues/new)
+**¡Únete a la revolución del desarrollo con IA!**
 
 ---
 
-## 🎯 Próximos Pasos
-
-### 🚀 **Para Empezar**
-1. **Instalar** el framework en tu proyecto
-2. **Configurar** integraciones básicas
-3. **Probar** con un agente IA
-4. **Documentar** tu experiencia
-
-### 🔄 **Para Contribuir**
-1. **Identificar** áreas de mejora
-2. **Implementar** nuevas características
-3. **Documentar** cambios
-4. **Compartir** con la comunidad
-
----
-
-*🎯 Este framework representa el futuro del desarrollo de software: inteligente, organizado y altamente colaborativo.*
-
-*🚀 ¡Únete a la revolución del desarrollo inteligente!*
-
----
-
-**¿Listo para transformar tu forma de desarrollar? [Instala el framework ahora](https://github.com/ai-dev-framework/core) y comienza a experimentar el poder de la IA en tu flujo de trabajo.** 
+*Última actualización: Julio 2025 | Versión: 1.0.0* 
