@@ -1,214 +1,320 @@
-# 🚀 Verdex Framework IA
+# 🚀 Verdex Framework IA v3.0
 
-> **Transformando el desarrollo de software con IA** - Un framework revolucionario para colaboración inteligente entre humanos y agentes IA.
+> **Framework de Desarrollo IA Empresarial Cross-Platform con Integración Atlassian Obligatoria**
+
+[![Status](https://img.shields.io/badge/status-stable-green)](https://github.com/AndresBardales/Verdex-Framework-IA)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue)](https://github.com/AndresBardales/Verdex-Framework-IA/releases)
+[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)](https://github.com/AndresBardales/Verdex-Framework-IA)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+Un framework revolucionario para colaboración inteligente entre humanos y agentes IA, con integración obligatoria a Atlassian y controles de calidad empresariales.
+
+---
 
 ## ⚡ Instalación Ultra-Rápida
 
-### 🎯 Un Solo Comando
+### 🎯 Un Solo Comando (Recomendado)
 
 ```bash
-# Instalar framework en proyecto existente
-curl -fsSL https://raw.githubusercontent.com/verdex-ai/framework/main/verdex-ai-setup.sh | bash
+curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
 ```
 
 ### 🔄 Instalación Manual
 
 ```bash
-# Clonar repositorio
-git clone https://github.com/verdex-ai/framework.git
-cd framework
+# Descargar script
+wget https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh
 
-# Instalar framework
+# Hacer ejecutable y instalar
+chmod +x verdex-ai-setup.sh
 ./verdex-ai-setup.sh
-
-# Verificar instalación
-./scripts/health_check.sh
 ```
 
 ---
 
 ## 🌟 ¿Qué es el Verdex Framework IA?
 
-El **Verdex Framework IA** es una infraestructura completa que permite a equipos de desarrollo:
+### 🎯 **Características Principales**
 
-- 🤖 **Colaborar eficientemente** con agentes IA (Cursor, Claude, Rovo Dev, etc.)
-- 📚 **Documentar automáticamente** todo el proceso de desarrollo
-- 🔗 **Integrar nativamente** con Atlassian (Jira, Confluence)
-- 📊 **Medir productividad** con métricas reales de desarrollo
-- 🏥 **Monitorear sistemas** con health checks automatizados
-- 🎯 **Controlar calidad** con protocolos obligatorios
+- 🤖 **Control total de agentes IA**: Protocolos obligatorios empresariales
+- 🎫 **Integración Jira obligatoria**: Ningún trabajo sin ticket válido
+- 📱 **Cross-platform**: Windows, Linux, macOS
+- 🏗️ **Estructura profesional**: Todo contenido en `.verdex-ai/` (oculto como `.git`)
+- 📊 **Auto-configuración**: Detecta tipo de proyecto automáticamente
+- 🔧 **Scripts inteligentes**: Health checks, verificación MCP, plantillas
 
----
+### 🎪 **Para Quién es Este Framework**
 
-## 🎯 Beneficios Comprobados
-
-### 📈 **Productividad**
-- **80% reducción** en tiempo de onboarding
-- **50% menos tiempo** en documentación
-- **100% automatización** de tareas repetitivas
-- **70% mejora** en colaboración IA-humano
-
-### 🎪 **Calidad**
-- **Documentación siempre actualizada** automáticamente
-- **Trazabilidad completa** de decisiones técnicas
-- **Prevención de errores** mediante análisis automático
-- **Control obligatorio** de protocolos
-
-### 🤝 **Colaboración**
-- **Protocolos estándar** para agentes IA
-- **Memoria persistente** entre sesiones
-- **Contexto automático** para nuevos desarrolladores
-- **Integración empresarial** con Atlassian
+- 👩‍💻 **Desarrolladores** que trabajan con agentes IA (Claude, Cursor, etc.)
+- 🏢 **Equipos empresariales** que necesitan control y trazabilidad
+- 📊 **Proyectos con Atlassian** (Jira, Confluence)
+- 🚀 **Organizaciones** que buscan estándares en IA
 
 ---
 
-## 🏗️ Estructura del Framework
+## 🔧 Funcionalidades v3.0
+
+### 📁 **Estructura Profesional**
 
 ```
-mi-proyecto/
-├── .verdex-ai/            # 🔧 Framework (como .git)
-│   ├── config/           # ⚙️ Configuración
-│   ├── docs/             # 📚 Documentación genérica
-│   ├── lab/              # 🧪 Entorno de pruebas IA
-│   ├── scripts/          # 🛠️ Automatización inteligente
-│   ├── sessions/         # 📝 Historial de sesiones
-│   └── templates/        # 📋 Plantillas profesionales
-├── VERDEX_AI_AGENT_GUIDE.md  # 🤖 Protocolo obligatorio IA
-└── verdex-ai-setup.sh        # ⚡ Instalador
+tu-proyecto/
+├── .verdex-ai/              # 🔧 Framework (oculto como .git)
+│   ├── config/             # ⚙️ framework-settings.yaml
+│   ├── scripts/            # 🛠️ health-check.sh, verify-connections.sh
+│   ├── sessions/           # 📝 conversation-history.md
+│   ├── templates/          # 📋 jira-tickets/*.yaml
+│   ├── lab/                # 🧪 Experimentación segura
+│   └── docs/               # 📚 Documentación
+├── VERDEX_AI_AGENT_GUIDE.md # 🤖 Protocolo obligatorio para agentes
+└── [archivos de tu proyecto] # 📁 Tu código intacto
 ```
+
+### 🚀 **Scripts Inteligentes**
+
+| Script | Función | Comando |
+|--------|---------|---------|
+| **health-check.sh** | Verificación completa del framework | `.verdex-ai/scripts/health-check.sh` |
+| **verify-connections.sh** | Validación de integraciones MCP | `.verdex-ai/scripts/verify-connections.sh` |
+
+### 📋 **Plantillas Profesionales**
+
+- **🐛 bug-report.yaml**: Template estructurado para reportes de bugs
+- **✨ feature-request.yaml**: Template para solicitudes de funcionalidades
+- **📊 session-reports**: Plantillas para documentación de sesiones
+
+### ⚙️ **Auto-Configuración**
+
+El framework detecta automáticamente:
+- 💻 **Sistema operativo**: Windows, Linux, macOS
+- 📦 **Tipo de proyecto**: Node.js, Python, PHP, Java, Flutter, Docker, etc.
+- 🔗 **Integraciones MCP**: Atlassian, Google Calendar, etc.
+- 📁 **Estructura existente**: Se adapta sin interferir
 
 ---
 
-## 🚀 Casos de Uso
+## 🎯 Flujo de Trabajo para Agentes IA
 
-### 🆕 **Nuevo Desarrollador**
+### 📋 **Protocolo Obligatorio**
+
+Antes de cualquier trabajo, los agentes IA **DEBEN**:
+
+1. **📍 Verificar framework**: `ls -la .verdex-ai/`
+2. **⚕️ Health check**: `.verdex-ai/scripts/health-check.sh`
+3. **📖 Leer historial**: `cat .verdex-ai/sessions/conversation-history.md`
+4. **🔗 Verificar MCP**: `.verdex-ai/scripts/verify-connections.sh`
+5. **🎫 Crear ticket Jira**: OBLIGATORIO antes de proceder
+6. **📝 Actualizar log**: Registrar inicio de sesión
+
+### 🔄 **Flujo Estándar**
+
+1. **🚀 ANÁLISIS** - Health check y verificar estado
+2. **📋 PLANIFICACIÓN** - Crear ticket usando plantillas YAML
+3. **🧪 EXPERIMENTACIÓN** - Probar en `.verdex-ai/lab/` ANTES de implementar
+4. **⚡ IMPLEMENTACIÓN** - Aplicar cambios con referencia a ticket
+5. **✅ VALIDACIÓN** - Health checks y verificar integraciones
+6. **📚 DOCUMENTACIÓN** - Actualizar conversation-history.md
+
+---
+
+## 💡 Casos de Uso
+
+### 🏢 **Para Empresas**
+
 ```bash
-# Onboarding en < 30 minutos
-git clone proyecto-url && cd proyecto
-cat VERDEX_AI_AGENT_GUIDE.md  # Leer protocolo
-./.verdex-ai/scripts/health_check.sh
-# ¡Listo para contribuir!
+# Instalar en proyecto existente
+cd mi-proyecto-empresarial
+curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
+
+# El framework detecta automáticamente y configura
+# ✅ Control total sobre agentes IA
+# ✅ Integración obligatoria con Jira
+# ✅ Documentación automática de sesiones
 ```
 
-### 🤖 **Agente IA (Cursor, Claude, etc.)**
+### 👩‍💻 **Para Desarrolladores**
+
 ```bash
-# Protocolo estándar obligatorio
-cat VERDEX_AI_AGENT_GUIDE.md    # Protocolo principal
-cat .verdex-ai/sessions/conversation-history.md  # Contexto
-./.verdex-ai/scripts/health_check.sh  # Estado
-cd .verdex-ai/lab/              # Experimentar
-# Framework actualiza automáticamente
+# En cualquier proyecto
+curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
+
+# Beneficios inmediatos:
+# ✅ Agentes IA siguen protocolos estrictos
+# ✅ Plantillas profesionales para tickets
+# ✅ Health checks automáticos
+# ✅ Experimentación segura en lab/
 ```
 
-### 📊 **Gestor de Proyecto**
+### 🤖 **Para Agentes IA**
+
+El framework incluye `VERDEX_AI_AGENT_GUIDE.md` con **protocolos obligatorios**:
+
+- 🚫 **Trabajar sin ticket Jira válido**: PROHIBIDO
+- 📝 **Omitir documentación**: PROHIBIDO  
+- 🧪 **Implementar sin experimentar**: PROHIBIDO
+- ⚕️ **Saltarse health checks**: PROHIBIDO
+
+---
+
+## 🛠️ Comandos Útiles
+
+### 🔍 **Verificación**
+
 ```bash
-# Métricas y reportes automáticos
-./.verdex-ai/scripts/smart-metrics-engine.py
-./.verdex-ai/scripts/auto-chat-documenter.sh
+# Health check completo
+.verdex-ai/scripts/health-check.sh
+
+# Verificar conexiones MCP
+.verdex-ai/scripts/verify-connections.sh
+
+# Ver configuración
+cat .verdex-ai/config/framework-settings.yaml
+```
+
+### 📊 **Documentación**
+
+```bash
+# Ver historial de conversaciones
+cat .verdex-ai/sessions/conversation-history.md
+
+# Listar plantillas disponibles
+ls .verdex-ai/templates/jira-tickets/
+
+# Ver logs de instalación
+cat .verdex-ai/sessions/installation.log
+```
+
+### 🧪 **Experimentación**
+
+```bash
+# Área segura para pruebas
+cd .verdex-ai/lab/experiments
+
+# Prototipos rápidos
+cd .verdex-ai/lab/prototypes
+
+# Testing aislado
+cd .verdex-ai/lab/testing
 ```
 
 ---
 
-## 🔧 Herramientas Incluidas
+## 🎯 Compatibilidad
 
-### 🎯 **Automatización Inteligente**
-- **Git Hooks**: Control obligatorio de tickets
-- **Chat Documenter**: Documentación automática de sesiones  
-- **Quick Ticket**: Creación rápida de tickets Jira
-- **Smart Metrics**: Análisis inteligente de productividad
-- **Proactive Coach**: Sugerencias automáticas
+### 💻 **Sistemas Operativos**
 
-### 🤖 **Integración Atlassian**
-- **MCP Connections**: Verificación automática de conexiones
-- **Jira Templates**: Plantillas profesionales de tickets
-- **Confluence Pages**: Templates de documentación
-- **Auto-sync**: Sincronización bidireccional
+- ✅ **Linux** (Ubuntu, CentOS, RHEL, etc.)
+- ✅ **macOS** (Intel & Apple Silicon)
+- ✅ **Windows** (Git Bash, WSL)
 
-### 🏥 **Monitoreo Inteligente**
-- **Health checks** automáticos
-- **Logging estructurado** de sesiones
-- **Métricas de calidad** automáticas
-- **Alertas proactivas**
+### 📦 **Tipos de Proyecto**
 
----
+- ✅ **Node.js** (`package.json`)
+- ✅ **Python** (`requirements.txt`, `pyproject.toml`)
+- ✅ **PHP** (`composer.json`)
+- ✅ **Java** (`pom.xml`, `build.gradle`)
+- ✅ **Flutter** (`pubspec.yaml`)
+- ✅ **Docker** (`docker-compose.yml`)
+- ✅ **Genérico** (cualquier proyecto con README)
 
-## 📚 Documentación Completa
+### 🔗 **Integraciones MCP**
 
-- **[Guía del Agente](VERDEX_AI_AGENT_GUIDE.md)** - Protocolo obligatorio para IA
-- **[Quick Start](.verdex-ai/docs/QUICK_START.md)** - Setup paso a paso
-- **[Git Strategy](.verdex-ai/docs/git-branch-strategy.md)** - Estrategia de branches
-- **[Framework Config](.verdex-ai/config/framework-settings.yaml)** - Configuración
+- ✅ **Atlassian** (Jira, Confluence)
+- ✅ **Google Calendar**
+- ✅ **Extensible** a cualquier MCP
 
 ---
 
-## 🌟 Características Únicas
+## 📋 Solución de Problemas
 
-### 🔒 **Control Obligatorio**
-- **No hay commits sin tickets** - Git hooks lo impiden
-- **Documentación automática** - No es opcional
-- **Protocolos IA estrictos** - Agentes deben seguir reglas
-- **Métricas automáticas** - Se alimentan solas
+### ❌ **Error: curl 404**
 
-### 🧠 **Inteligencia Adaptativa**
-- **Aprende patrones** de desarrollo
-- **Sugiere automatizaciones** basadas en repetición
-- **Detecta oportunidades** de mejora
-- **Predice problemas** antes de que ocurran
+```bash
+# Verificar URL
+curl -I https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh
 
-### 🏢 **Empresarial Ready**
-- **Integración Atlassian** nativa
-- **Métricas ROI** demostrables
-- **Compliance** automático
-- **Auditoría completa** de actividades
+# Instalación manual alternativa
+git clone https://github.com/AndresBardales/Verdex-Framework-IA.git
+cd Verdex-Framework-IA
+./verdex-ai-setup.sh
+```
 
----
+### ❌ **Error: BASH_SOURCE unbound**
 
-## 🎯 Roadmap
+Si ves este error, significa que estás usando una versión cached. Espera 5-10 minutos o usa instalación manual.
 
-### ✅ **v3.0** (Actual)
-- Framework inteligente con auto-aprendizaje
-- Git hooks obligatorios
-- Documentación y métricas automáticas
-- Integración MCP Atlassian
+### ❌ **Error: Permisos**
 
-### 🔄 **v3.1** (En desarrollo)
-- Dashboard web de métricas
-- Predicciones basadas en ML
-- Auto-optimización de workflows
+```bash
+# Asegurar permisos de escritura
+chmod +w .
+./verdex-ai-setup.sh
+```
 
-### 🚀 **v4.0** (Futuro)
-- Agente IA nativo integrado
-- Automatización completa de procesos
-- Ecosistema de plugins
+### ✅ **Health Check Falla**
+
+```bash
+# Reinstalar framework
+./verdex-ai-setup.sh
+
+# Verificar MCP
+.verdex-ai/scripts/verify-connections.sh
+```
 
 ---
 
-## 🤝 Contribuir
+## 🤝 Contribuciones
 
-### 🐛 **Reportar Issues**
-- Usar plantillas incluidas en `.verdex-ai/templates/`
-- Incluir métricas y contexto completo
+### 🐛 **Reportar Bugs**
 
-### 💡 **Proponer Features**
-- Experimentar en `.verdex-ai/lab/`
-- Documentar en `.verdex-ai/sessions/`
-- Pull request con métricas de impacto
+Usa la plantilla incluida:
+```bash
+cat .verdex-ai/templates/jira-tickets/bug-report.yaml
+```
 
-### 📞 **Soporte**
-- Email: andresbardales15@gmail.com
-- Proyecto: **Verdex Framework IA (VFI)**
+### ✨ **Solicitar Features**
+
+Usa la plantilla incluida:
+```bash
+cat .verdex-ai/templates/jira-tickets/feature-request.yaml
+```
+
+### 📝 **Contribuir Código**
+
+1. Fork del repositorio
+2. Crear branch: `git checkout -b feature/nueva-funcionalidad`
+3. Instalar framework: `./verdex-ai-setup.sh`
+4. Seguir protocolos en `VERDEX_AI_AGENT_GUIDE.md`
+5. Commit con referencia a ticket
+6. Pull Request
 
 ---
 
 ## 📄 Licencia
 
-Este proyecto está bajo licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
+MIT License - ver [LICENSE](LICENSE) para detalles.
 
 ---
 
-## 🏆 Reconocimientos
+## 🏆 Créditos
 
-Desarrollado por **Jose Andres Bardales Calva** como parte del proyecto **Verdex Framework IA**.
+**Verdex Framework IA v3.0** - Desarrollado para excelencia en colaboración IA empresarial.
 
-**Versión**: v3.0  
-**Última actualización**: $(date +%Y-%m-%d) 
+- 🤖 **Para agentes IA**: Protocolos obligatorios y control de calidad
+- 🏢 **Para empresas**: Trazabilidad y integración Atlassian
+- 👩‍💻 **Para desarrolladores**: Productividad y estructura profesional
+
+---
+
+### 🚀 **¿Listo para transformar tu desarrollo con IA?**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash
+```
+
+**⚡ 30 segundos. Tu proyecto. Control total sobre IA. Calidad empresarial.**
+
+---
+
+*📅 Verdex Framework IA v3.0 - Cross-Platform Excellence in AI-Assisted Development*  
+*🎯 Mandatory protocols for enterprise-grade AI collaboration*  
+*🏢 Professional structure · 🤖 AI-first approach · 📊 Atlassian integrated* 
