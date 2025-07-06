@@ -728,8 +728,8 @@ main() {
     log "SUCCESS" "🎉 $FRAMEWORK_NAME v3.0 listo para usar!"
 }
 
-# Ejecutar con manejo de errores
-if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+# Ejecutar con manejo de errores (compatible con curl pipe)
+if [[ "${BASH_SOURCE[0]:-$0}" == "${0}" ]]; then
     trap 'log "ERROR" "Error en línea $LINENO. Código de salida: $?"' ERR
     main "$@"
 fi 
