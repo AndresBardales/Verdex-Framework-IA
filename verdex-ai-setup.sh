@@ -16,7 +16,7 @@ readonly FRAMEWORK_NAME="Verdex Framework IA"
 readonly FRAMEWORK_VERSION="3.0.0"
 readonly FRAMEWORK_DIR=".verdex-ai"
 readonly MAIN_GUIDE="VERDEX_AI_AGENT_GUIDE.md"
-readonly BITBUCKET_RAW_URL="https://bitbucket.org/pipeline-test-001/framework/raw/main"
+readonly GITHUB_RAW_URL="https://raw.githubusercontent.com/your-username/verdex-ai-framework/main"
 readonly TMP_DIR="/tmp/verdex-ai-install"
 
 # Detectar sistema operativo
