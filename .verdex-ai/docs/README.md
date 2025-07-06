@@ -1,26 +1,33 @@
-# 📚 Documentación Técnica - Asistente Voz Realtime
+# 📚 Documentación Verdex Framework IA
 
 ## 📋 Índice de Documentos
 
 ### 📄 Documentos Principales
-- **`documentacion-tecnica-completa.txt`** - Documentación técnica completa del proyecto, arquitectura y flujos de datos
-- **`modelo-negocio-oficial.pdf`** - Modelo de negocio Canvas y propuesta de valor  
+- **`QUICK_START.md`** - Guía rápida de instalación y configuración
 - **`git-branch-strategy.md`** - Estrategia de branches y metodología de desarrollo
 
-### 🏗️ Arquitectura
-- Microservicios containerizados con Docker Compose
-- Flutter App + FastAPI Backend + MongoDB + MQTT + n8n
-- Pipeline completo: Audio → Transcripción → Análisis IA → Automatización
+### 🏗️ Arquitectura Framework
+- Estructura modular contenida en directorio `.verdex-ai/`
+- Integración obligatoria con Atlassian via MCP
+- Automatización inteligente con scripts especializados
+- Control de calidad obligatorio mediante Git hooks
 
-### 🎯 Estado del Proyecto
-- **Versión**: v1.0 MVP Completo
-- **Estado**: Funcional y listo para testing
+### 🎯 Estado del Framework
+- **Versión**: v3.0 Inteligente
+- **Estado**: Estable y listo para producción
 - **Última actualización**: Enero 2025
 
 ### 📖 Enlaces Útiles
-- **Guía técnica para IAs**: `../AGENT_README.md`
-- **Documentación de usuario**: `../README.md`  
-- **Laboratorio de testing**: `../agent/`
+- **Protocolo obligatorio**: `../../VERDEX_AI_AGENT_GUIDE.md`
+- **Configuración**: `../config/framework-settings.yaml`  
+- **Laboratorio de pruebas**: `../lab/`
+- **Scripts de automatización**: `../scripts/`
 
-## 📞 Contacto
-Para consultas técnicas o actualización de documentación, contactar al equipo de desarrollo. 
+### 🔧 Características del Framework
+- **Control obligatorio**: Git hooks impiden commits sin tickets
+- **Documentación automática**: Se genera sin intervención manual
+- **Métricas inteligentes**: Auto-alimentación basada en actividad
+- **Integración empresarial**: Compatible con flujos Atlassian
+
+## 📞 Soporte
+Para consultas sobre el framework, crear ticket usando templates incluidos en `../templates/jira-tickets/`. 
