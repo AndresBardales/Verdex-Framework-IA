@@ -181,7 +181,42 @@ create_framework_structure() {
     mkdir -p "$FRAMEWORK_DIR"/templates/{jira-tickets,confluence-pages,session-reports}
     mkdir -p "$FRAMEWORK_DIR"/docs/{guides,troubleshooting}
     
+    # Descargar system prompts y documentación adicional desde GitHub
+    download_framework_docs
+    
     log "SUCCESS" "Estructura del framework creada"
+}
+
+# Descargar documentación del framework desde GitHub
+download_framework_docs() {
+    log "INFO" "Descargando system prompts y documentación..."
+    
+    # URLs de los archivos a descargar
+    local docs_base="$GITHUB_RAW_URL/.verdex-ai/docs"
+    
+    # System Prompts
+    curl -fsSL "$docs_base/SYSTEM_PROMPT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" 2>/dev/null || echo "⚠️  No se pudo descargar SYSTEM_PROMPT.md"
+    curl -fsSL "$docs_base/SYSTEM_PROMPT_COMPACT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" 2>/dev/null || echo "⚠️  No se pudo descargar SYSTEM_PROMPT_COMPACT.md"
+    curl -fsSL "$docs_base/CURSOR_COPY_PASTE.md" -o "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" 2>/dev/null || echo "⚠️  No se pudo descargar CURSOR_COPY_PASTE.md"
+    curl -fsSL "$docs_base/HOW_TO_USE_SYSTEM_PROMPTS.md" -o "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" 2>/dev/null || echo "⚠️  No se pudo descargar HOW_TO_USE_SYSTEM_PROMPTS.md"
+    
+    # Documentación adicional
+    curl -fsSL "$docs_base/README.md" -o "$FRAMEWORK_DIR/docs/README.md" 2>/dev/null || echo "⚠️  No se pudo descargar docs README.md"
+    curl -fsSL "$docs_base/QUICK_START.md" -o "$FRAMEWORK_DIR/docs/QUICK_START.md" 2>/dev/null || echo "⚠️  No se pudo descargar QUICK_START.md"
+    curl -fsSL "$docs_base/git-branch-strategy.md" -o "$FRAMEWORK_DIR/docs/git-branch-strategy.md" 2>/dev/null || echo "⚠️  No se pudo descargar git-branch-strategy.md"
+    
+    # Verificar si se descargaron correctamente
+    local downloaded=0
+    [ -f "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" ] && downloaded=$((downloaded + 1))
+    [ -f "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" ] && downloaded=$((downloaded + 1))
+    [ -f "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" ] && downloaded=$((downloaded + 1))
+    [ -f "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" ] && downloaded=$((downloaded + 1))
+    
+    if [ $downloaded -ge 4 ]; then
+        log "SUCCESS" "System prompts descargados correctamente ($downloaded/4)"
+    else
+        log "WARNING" "Solo se descargaron $downloaded/4 system prompts"
+    fi
 }
 
 # Crear configuración framework-settings.yaml
@@ -688,6 +723,7 @@ show_installation_summary() {
     echo -e "${CYAN}💬 Historial conversación:${NC} .verdex-ai/sessions/conversation-history.md"
     echo -e "${CYAN}🎫 Plantillas Jira:${NC} .verdex-ai/templates/jira-tickets/"
     echo -e "${CYAN}🔧 Scripts inteligentes:${NC} .verdex-ai/scripts/"
+    echo -e "${CYAN}🤖 System Prompts:${NC} .verdex-ai/docs/ (Cursor, Claude, ROVO, ChatGPT)"
     echo -e "${CYAN}💻 Sistema:${NC} $OS_TYPE (cross-platform)"
     echo ""
     echo -e "${YELLOW}🚀 PRÓXIMOS PASOS OBLIGATORIOS:${NC}"
