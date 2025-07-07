@@ -1,0 +1,139 @@
+# 🤖 Verdex Framework IA - Configuración Principal
+# Version: 2.0.0
+# Fecha: 2025-01-07
+
+framework:
+  name: "Verdex Framework IA"
+  version: "2.0.0"
+  author: "Verdex Development Team"
+  repository: "https://github.com/your-org/verdex-framework-ia"
+  
+# Configuración de Logging
+logging:
+  conversation_history: true
+  detailed_interactions: true
+  session_tracking: true
+  agent_metrics: true
+  
+  # Archivos de log
+  files:
+    conversation: ".verdex-ai/sessions/conversation-history.md"
+    interactions: ".verdex-ai/sessions/agent-interactions.log"
+    metrics: ".verdex-ai/sessions/agent-metrics.json"
+  
+  # Retención de logs
+  retention:
+    days: 30
+    max_size_mb: 100
+    auto_cleanup: true
+
+# Integración Atlassian (OBLIGATORIA)
+atlassian:
+  required: true
+  jira_integration: true
+  confluence_integration: true
+  
+  # Configuración MCP
+  mcp:
+    atlassian_tool: "atlassianToolIla"
+    calendar_tool: "MiCalendarioBitToBit"
+    verify_on_startup: true
+  
+  # Plantillas
+  templates:
+    jira_tickets: ".verdex-ai/templates/jira-tickets/"
+    confluence_pages: ".verdex-ai/templates/confluence-pages/"
+  
+  # Etiquetas estándar
+  default_labels:
+    - "verdex-framework"
+    - "ai-processed"
+
+# Comportamiento del Agente
+agent_behavior:
+  require_tickets: true
+  force_experimentation: true
+  auto_documentation: true
+  
+  # Flujo de trabajo
+  workflow:
+    phases: ["analisis", "planificacion", "experimentacion", "implementacion", "validacion", "documentacion"]
+    mandatory_lab_testing: true
+    require_ticket_reference: true
+  
+  # Preguntas automáticas
+  auto_questions:
+    on_start: true
+    during_work: true
+    on_finish: true
+
+# Estructura de Laboratorio
+lab:
+  base_path: ".verdex-ai/lab/"
+  auto_cleanup: true
+  experiment_retention_days: 7
+  
+  directories:
+    experiments: "experiments"
+    prototypes: "prototypes"
+    testing: "testing"
+
+# Documentación
+documentation:
+  auto_generate: true
+  update_on_changes: true
+  
+  # Ubicaciones
+  paths:
+    docs: ".verdex-ai/docs/"
+    templates: ".verdex-ai/templates/"
+    guides: ".verdex-ai/docs/guides/"
+
+# Scripts del Framework
+scripts:
+  base_path: ".verdex-ai/scripts/"
+  
+  available:
+    setup: "setup-framework.sh"
+    atlassian_config: "configure-atlassian.sh"
+    verify_connections: "verify-connections.sh"
+    health_check: "health-check.sh"
+    session_summary: "session-summary.sh"
+    cleanup_lab: "cleanup-lab.sh"
+
+# Métricas y Seguimiento
+metrics:
+  enabled: true
+  track:
+    - tickets_created
+    - tickets_closed
+    - experimentation_time
+    - implementation_time
+    - documentation_quality
+    - atlassian_usage
+    - workflow_adherence
+  
+  export:
+    format: "json"
+    frequency: "daily"
+    location: ".verdex-ai/sessions/metrics/"
+
+# Seguridad
+security:
+  validate_mcp_connections: true
+  require_authentication: true
+  log_security_events: true
+  
+# Personalización por Proyecto
+project:
+  # Estas configuraciones serán sobrescritas por cada proyecto
+  type: "auto-detect"  # web, mobile, api, desktop, etc.
+  technology_stack: []
+  custom_templates: false
+  
+# Configuración de Instalación
+installation:
+  create_hidden_directory: true
+  preserve_existing_files: true
+  backup_before_install: true
+  verify_prerequisites: true 
