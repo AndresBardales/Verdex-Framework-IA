@@ -21,7 +21,15 @@ ls -la .verdex-ai/
 - Verify `.verdex-ai/` directory exists
 - If missing, inform user to install: `curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/main/verdex-ai-setup.sh | bash`
 
-### 📖 Step 2: Read Conversation History
+### 🔧 Step 2: Check Atlassian Configuration
+```bash
+cat .verdex-ai/config/atlassian-connection.yaml
+```
+- **IF FILE MISSING**: Run `.verdex-ai/scripts/configure-atlassian.sh` to setup
+- **MUST HAVE**: Jira URL, Project Key, Confluence Space configured
+- **CRITICAL**: Cannot proceed without proper Atlassian configuration
+
+### 📖 Step 3: Read Conversation History
 ```bash
 cat .verdex-ai/sessions/conversation-history.md
 ```
@@ -29,7 +37,7 @@ cat .verdex-ai/sessions/conversation-history.md
 - Understand previous work done
 - Identify ongoing tickets/tasks
 
-### 🔗 Step 3: Verify MCP Connections
+### 🔗 Step 4: Verify MCP Connections
 ```bash
 .verdex-ai/scripts/verify-connections.sh
 ```
@@ -37,13 +45,14 @@ cat .verdex-ai/sessions/conversation-history.md
 - Verify access to Jira/Confluence
 - Report connection status to user
 
-### 🎫 Step 4: Create Mandatory Jira Ticket
-- **CRITICAL**: You CANNOT proceed without a valid Jira ticket
-- Use Atlassian MCP to create ticket before any work
-- Use templates from `.verdex-ai/templates/jira-tickets/`
-- Reference ticket ID in all subsequent work
+### 🎫 Step 5: ASK FOR EXISTING TICKET (MANDATORY)
+- **FIRST ASK**: "Do you already have a Jira ticket for this work?"
+- **IF YES**: Ask for ticket ID and proceed with that ticket
+- **IF NO**: Ask if you should create a new ticket or if this is exploratory work
+- **ONLY CREATE TICKET**: If user explicitly confirms they need a new one
+- **NEVER**: Automatically create tickets without asking
 
-### 📝 Step 5: Log Session Start
+### 📝 Step 6: Log Session Start
 ```bash
 echo "$(date): Agent session started - Ticket: [TICKET-ID] - User request: [USER_REQUEST]" >> .verdex-ai/sessions/agent-interactions.log
 ```
@@ -97,24 +106,26 @@ echo "$(date): Agent session started - Ticket: [TICKET-ID] - User request: [USER
 ## 🚫 ABSOLUTE RULES (NEVER BREAK THESE)
 
 ### ✅ ALWAYS DO:
-1. **Create Jira ticket before any work** - No exceptions
-2. **Experiment in lab/ before production changes** - Mandatory
-3. **Update conversation-history.md every response** - Required
-4. **Use Atlassian MCP for all integrations** - Obligatory
-5. **Follow 6-phase workflow completely** - No shortcuts
-6. **Maintain detailed logging** - Critical for audit
-7. **Ask clarifying questions when uncertain** - Better safe than sorry
-8. **Reference ticket ID in commits** - Traceability required
+1. **Ask for existing ticket FIRST** - Before creating new ones
+2. **Configure Atlassian if missing** - Run configure-atlassian.sh
+3. **Experiment in lab/ before production changes** - Mandatory
+4. **Update conversation-history.md every response** - Required
+5. **Use Atlassian MCP for all integrations** - Obligatory
+6. **Follow 6-phase workflow completely** - No shortcuts
+7. **Maintain detailed logging** - Critical for audit
+8. **Ask clarifying questions when uncertain** - Better safe than sorry
+9. **Reference ticket ID in commits** - Traceability required
 
 ### 🚫 NEVER DO:
-1. **Work without valid Jira ticket** - Violation of enterprise policy
-2. **Modify production code without experimentation** - Unacceptable risk
-3. **Skip updating conversation history** - Breaks documentation chain
-4. **Omit experimentation phase** - Mandatory quality gate
-5. **Generate files outside framework structure** - Breaks organization
-6. **Proceed without MCP verification** - Security requirement
-7. **Rush through phases** - Quality over speed
-8. **Ignore error conditions** - Must be addressed immediately
+1. **Create tickets automatically without asking** - Always ask first
+2. **Work without proper Atlassian configuration** - Must be setup
+3. **Modify production code without experimentation** - Unacceptable risk
+4. **Skip updating conversation history** - Breaks documentation chain
+5. **Omit experimentation phase** - Mandatory quality gate
+6. **Generate files outside framework structure** - Breaks organization
+7. **Proceed without MCP verification** - Security requirement
+8. **Rush through phases** - Quality over speed
+9. **Ignore error conditions** - Must be addressed immediately
 
 ---
 
@@ -155,10 +166,11 @@ Phase [1-6]: [PHASE_NAME]
 
 ## 🎯 MANDATORY QUESTIONS FOR USER
 
-### 🚀 At Session Start:
-- "What type of work are we focusing on today? (Bug/Feature/Documentation/Refactor)"
-- "Do you have an existing Jira ticket, or should I create a new one?"
-- "What are the acceptance criteria for this work?"
+### 🚀 At Session Start (IN ORDER):
+1. "Is Atlassian configured? If not, shall I run the configuration script?"
+2. "Do you already have a Jira ticket for this work? If yes, what's the ticket ID?"
+3. "What type of work are we focusing on today? (Bug/Feature/Documentation/Refactor)"
+4. "What are the acceptance criteria for this work?"
 
 ### 🔄 During Work:
 - "Does this change require additional experimentation before implementation?"
@@ -283,6 +295,21 @@ curl -fsSL https://raw.githubusercontent.com/AndresBardales/Verdex-Framework-IA/
 Cannot proceed without framework. Please install and retry.
 ```
 
+### If Atlassian Not Configured:
+```
+❌ CRITICAL: Atlassian integration not configured.
+🔧 SOLUTION: Run configuration script:
+.verdex-ai/scripts/configure-atlassian.sh
+
+This will ask for:
+- Jira URL (https://company.atlassian.net)
+- Project Key (PROJ, DEV, etc.)
+- Confluence Space
+- Cloud ID (optional)
+
+CANNOT PROCEED without Atlassian configuration.
+```
+
 ### If MCP Connection Fails:
 ```
 ❌ WARNING: Atlassian MCP connection failed.
@@ -295,16 +322,15 @@ Cannot proceed without framework. Please install and retry.
 Jira integration required for enterprise compliance.
 ```
 
-### If Jira Ticket Creation Fails:
+### If User Has No Ticket:
 ```
-❌ BLOCKER: Cannot create Jira ticket.
-🔧 SOLUTION:
-1. Verify MCP connection to Atlassian
-2. Check project permissions
-3. Validate ticket template format
-4. Manual ticket creation may be required
+❌ INFO: No existing Jira ticket provided.
+🔧 OPTIONS:
+1. User provides existing ticket ID
+2. Create new ticket (only if user confirms)
+3. Continue with exploratory work (document in conversation-history.md)
 
-CANNOT PROCEED without valid ticket ID.
+ALWAYS ASK FIRST - Never create tickets automatically.
 ```
 
 ---
@@ -340,7 +366,9 @@ Track and report on:
 
 **You're following the protocol correctly when:**
 - ✅ Every session starts with framework verification
-- ✅ Every work item has associated Jira ticket
+- ✅ Atlassian configuration is verified before proceeding
+- ✅ You ask for existing tickets BEFORE creating new ones
+- ✅ Every work item has associated Jira ticket (existing or confirmed new)
 - ✅ Every implementation is preceded by experimentation
 - ✅ Every session updates conversation-history.md
 - ✅ User receives proactive quality suggestions

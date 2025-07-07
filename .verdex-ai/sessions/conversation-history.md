@@ -192,3 +192,76 @@ proyecto/
 *📅 Última actualización: 2025-01-07 16:15:00*  
 *🤖 Agente: Claude Sonnet 3.5*  
 *📊 Framework: Verdex Framework IA v2.0* 
+
+# 📋 Conversation History - Verdex Framework IA v3.0
+
+## 🕐 Session: 2025-07-06 18:53
+**Agent**: Claude (Cursor)  
+**Type**: Framework Protocol Improvement  
+**Ticket**: Framework Protocol Update  
+
+### 🎯 **PROBLEMA IDENTIFICADO**
+Usuario reportó comportamiento incorrecto del framework:
+- ❌ Agente creaba tickets Jira automáticamente sin preguntar
+- ❌ No verificaba si usuario ya tenía ticket asignado
+- ❌ Framework nuevo sin configuración Atlassian predefinida
+- ❌ Workflow incorrecto para desarrollo real (devs ya tienen tickets)
+
+### 🛠️ **MEJORAS IMPLEMENTADAS**
+
+#### 1. **Script de Configuración Atlassian**
+- ✅ Creado: `.verdex-ai/scripts/configure-atlassian.sh`
+- ✅ Solicita: Jira URL, Project Key, Confluence Space, Cloud ID
+- ✅ Valida formato de URLs
+- ✅ Guarda configuración en: `.verdex-ai/config/atlassian-connection.yaml`
+
+#### 2. **Protocolo de Inicialización Corregido**
+**ANTES**: 
+- Creaba tickets automáticamente
+- No verificaba configuración Atlassian
+
+**DESPUÉS**:
+1. Verificar framework existe
+2. **NUEVO**: Verificar configuración Atlassian
+3. Leer historial conversación  
+4. Verificar conexiones MCP
+5. **NUEVO**: PREGUNTAR por ticket existente PRIMERO
+6. Registrar inicio sesión
+
+#### 3. **System Prompt Actualizado**
+- ✅ Archivo: `SYSTEM_PROMPT.md` actualizado completamente
+- ✅ Nuevas reglas: "Ask for existing ticket FIRST"
+- ✅ Protocolo error: Atlassian no configurado
+- ✅ Preguntas obligatorias en orden correcto
+- ✅ Indicadores éxito actualizados
+
+### 📊 **WORKFLOW NUEVO**
+```
+¿Atlassian configurado? → Si No: run configure-atlassian.sh
+¿Ya tienes ticket? → Si Sí: usar ese ticket
+¿Qué tipo trabajo? → Si No: preguntar si crear nuevo
+¿Crear ticket? → Solo si usuario confirma explícitamente
+```
+
+### 🎯 **VALIDACIÓN**
+- ✅ Script configuración creado y ejecutable
+- ✅ System prompt actualizado con nuevo flujo
+- ✅ Protocolo error para Atlassian no configurado
+- ✅ Reglas actualizadas: no crear tickets automáticamente
+
+### 🔄 **IMPACTO**
+- **Desarrolladores reales**: Ya no se crean tickets innecesarios
+- **Frameworks nuevos**: Configuración guiada de Atlassian
+- **Compliance**: Mantiene trazabilidad pero con sentido común
+- **UX mejorado**: Pregunta antes de actuar
+
+### 📝 **ESTADO ACTUAL**
+- Framework: ✅ Funcionando correctamente
+- Atlassian: ⚠️ Requiere configuración inicial
+- MCP: ✅ Conectado (MiCalendarioBitToBit, atlassianToolIla)
+- Scripts: ✅ Todos operativos
+
+### 🚀 **PRÓXIMOS PASOS**
+1. Usuario debe ejecutar script configuración si lo necesita
+2. Validar nuevo flujo en próxima sesión
+3. Considerar agregar más validaciones de entrada

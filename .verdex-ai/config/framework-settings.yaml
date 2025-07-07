@@ -136,4 +136,107 @@ installation:
   create_hidden_directory: true
   preserve_existing_files: true
   backup_before_install: true
-  verify_prerequisites: true 
+  verify_prerequisites: true
+
+# Información del framework
+framework:
+  name: "Verdex Framework IA"
+  version: "3.0.0"
+  installation_date: "2025-07-06"
+  os_type: "linux"
+  
+# Información del proyecto
+project:
+  name: "webapp"
+  type: "containerized_app"
+  root_directory: "/home/ubuntu/Documents/desarrollo/b2b/webapp"
+  
+# Configuración de agentes IA
+agents:
+  protocol_enforcement: true
+  mandatory_ticket_creation: false  # Cambiado: NO crear tickets automáticamente
+  conversation_logging: true
+  experimental_mode: true
+  
+# ===================================================================
+# CONFIGURACIÓN ATLASSIAN (CRÍTICA)
+# ===================================================================
+atlassian:
+  # Estado de configuración
+  configured: false  # NUEVO: Indica si Atlassian está configurado
+  mcp_integration: true
+  
+  # CONFIGURACIÓN REQUERIDA (debe ser llenada por usuario)
+  connection:
+    cloud_id: ""  # NUEVO: ID del cloud Atlassian
+    jira_url: ""  # NUEVO: URL del proyecto Jira (ej: https://company.atlassian.net)
+    project_key: ""  # NUEVO: Clave del proyecto (ej: PROJ, ADA, etc.)
+    confluence_space: ""  # NUEVO: Espacio de Confluence
+    
+  # Configuración MCP
+  mcp:
+    atlassian_tool: "atlassianToolIla"
+    calendar_tool: "MiCalendarioBitToBit"
+    verify_on_startup: true
+  
+  # Comportamiento
+  jira_mandatory: true
+  confluence_docs: true
+  auto_ticket_creation: false  # NUEVO: No crear tickets automáticamente
+  
+# ===================================================================
+# PROTOCOLO DE TRABAJO MEJORADO
+# ===================================================================
+workflow:
+  # NUEVO: Preguntar por ticket existente PRIMERO
+  ask_for_existing_ticket: true
+  ask_for_ticket_id: true
+  
+  # Solo crear ticket si usuario confirma que no tiene uno
+  create_ticket_only_if_needed: true
+  
+  # Verificaciones obligatorias
+  mandatory_steps:
+    - check_atlassian_config
+    - ask_for_existing_ticket
+    - verify_framework_status
+    - read_conversation_history
+    - verify_mcp_connections
+
+# Configuración de scripts inteligentes v3.0
+smart_features:
+  git_hooks: true
+  auto_documentation: true
+  metrics_collection: true
+  smart_coaching: true
+  quick_tickets: true
+  
+# Configuración de seguridad
+security:
+  require_tickets_for_commits: true
+  auto_backup_on_changes: true
+  session_tracking: true
+  
+# Configuración de logging
+logging:
+  conversation_history: true
+  session_logs: true
+  metrics_auto_feed: true
+  installation_logs: true
+  
+# Paths importantes
+paths:
+  framework_dir: ".verdex-ai"
+  config_dir: ".verdex-ai/config"
+  scripts_dir: ".verdex-ai/scripts"
+  sessions_dir: ".verdex-ai/sessions"
+  lab_dir: ".verdex-ai/lab"
+  templates_dir: ".verdex-ai/templates"
+  
+# Estado del framework
+status:
+  installed: true
+  configured: true
+  mcp_connected: false
+  first_run: true
+  atlassian_setup_required: true  # NUEVO: Indica que necesita configuración 
