@@ -200,8 +200,10 @@ download_framework_docs() {
         return 1
     fi
     
-    # System Prompts
-    curl -fsSL "$docs_base/SYSTEM_PROMPT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" || log "WARNING" "No se pudo descargar SYSTEM_PROMPT.md"
+    # System Prompt principal (va en la raíz para copy-paste fácil)
+    curl -fsSL "$GITHUB_RAW_URL/SYSTEM_PROMPT.md" -o "SYSTEM_PROMPT.md" || log "WARNING" "No se pudo descargar SYSTEM_PROMPT.md"
+    
+    # System Prompts adicionales (van en docs/)
     curl -fsSL "$docs_base/SYSTEM_PROMPT_COMPACT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" || log "WARNING" "No se pudo descargar SYSTEM_PROMPT_COMPACT.md"
     curl -fsSL "$docs_base/CURSOR_COPY_PASTE.md" -o "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" || log "WARNING" "No se pudo descargar CURSOR_COPY_PASTE.md"
     curl -fsSL "$docs_base/HOW_TO_USE_SYSTEM_PROMPTS.md" -o "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" || log "WARNING" "No se pudo descargar HOW_TO_USE_SYSTEM_PROMPTS.md"
@@ -213,7 +215,7 @@ download_framework_docs() {
     
     # Verificar si se descargaron correctamente
     local downloaded=0
-    [ -f "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" ] && downloaded=$((downloaded + 1))
+    [ -f "SYSTEM_PROMPT.md" ] && downloaded=$((downloaded + 1))
     [ -f "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" ] && downloaded=$((downloaded + 1))
     [ -f "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" ] && downloaded=$((downloaded + 1))
     [ -f "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" ] && downloaded=$((downloaded + 1))
@@ -725,19 +727,21 @@ show_installation_summary() {
     echo ""
     echo -e "${CYAN}📁 Framework instalado en:${NC} .verdex-ai/ (oculto como .git)"
     echo -e "${CYAN}📋 Guía para agentes:${NC} VERDEX_AI_AGENT_GUIDE.md"
+    echo -e "${CYAN}🤖 System Prompt principal:${NC} SYSTEM_PROMPT.md (COPY-PASTE DIRECTO)"
     echo -e "${CYAN}⚙️  Configuración avanzada:${NC} .verdex-ai/config/framework-settings.yaml"
     echo -e "${CYAN}💬 Historial conversación:${NC} .verdex-ai/sessions/conversation-history.md"
     echo -e "${CYAN}🎫 Plantillas Jira:${NC} .verdex-ai/templates/jira-tickets/"
     echo -e "${CYAN}🔧 Scripts inteligentes:${NC} .verdex-ai/scripts/"
-    echo -e "${CYAN}🤖 System Prompts:${NC} .verdex-ai/docs/ (Cursor, Claude, ROVO, ChatGPT)"
+    echo -e "${CYAN}📚 System Prompts adicionales:${NC} .verdex-ai/docs/ (Cursor, ROVO, ChatGPT)"
     echo -e "${CYAN}💻 Sistema:${NC} $OS_TYPE (cross-platform)"
     echo ""
     echo -e "${YELLOW}🚀 PRÓXIMOS PASOS OBLIGATORIOS:${NC}"
-    echo "1. 🔍 Health check: .verdex-ai/scripts/health-check.sh"
-    echo "2. 🔗 Verificar MCP: .verdex-ai/scripts/verify-connections.sh"
-    echo "3. 📖 Leer guía completa: cat VERDEX_AI_AGENT_GUIDE.md"
-    echo "4. 🎫 Configurar Jira MCP en Cursor"
-    echo "5. 🤖 Iniciar trabajo siguiendo protocolos obligatorios"
+    echo "1. 🤖 CONFIGURAR AGENTE: cat SYSTEM_PROMPT.md → Copy-paste en tu agente IA"
+    echo "2. 🔍 Health check: .verdex-ai/scripts/health-check.sh"
+    echo "3. 🔗 Verificar MCP: .verdex-ai/scripts/verify-connections.sh"
+    echo "4. 📖 Leer guía completa: cat VERDEX_AI_AGENT_GUIDE.md"
+    echo "5. 🎫 Configurar Jira MCP en Cursor"
+    echo "6. 🚀 Iniciar trabajo siguiendo protocolos obligatorios"
     echo ""
     echo -e "${PURPLE}📚 Para agentes IA: PROTOCOLO OBLIGATORIO en VERDEX_AI_AGENT_GUIDE.md${NC}"
     echo -e "${PURPLE}🎯 Framework v3.0: Cross-platform, inteligente, listo para producción${NC}"
