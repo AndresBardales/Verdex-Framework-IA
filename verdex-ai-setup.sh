@@ -194,16 +194,22 @@ download_framework_docs() {
     # URLs de los archivos a descargar
     local docs_base="$GITHUB_RAW_URL/.verdex-ai/docs"
     
+    # Debug: verificar que el directorio existe
+    if [ ! -d "$FRAMEWORK_DIR/docs" ]; then
+        log "ERROR" "Directorio $FRAMEWORK_DIR/docs no existe"
+        return 1
+    fi
+    
     # System Prompts
-    curl -fsSL "$docs_base/SYSTEM_PROMPT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" 2>/dev/null || echo "⚠️  No se pudo descargar SYSTEM_PROMPT.md"
-    curl -fsSL "$docs_base/SYSTEM_PROMPT_COMPACT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" 2>/dev/null || echo "⚠️  No se pudo descargar SYSTEM_PROMPT_COMPACT.md"
-    curl -fsSL "$docs_base/CURSOR_COPY_PASTE.md" -o "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" 2>/dev/null || echo "⚠️  No se pudo descargar CURSOR_COPY_PASTE.md"
-    curl -fsSL "$docs_base/HOW_TO_USE_SYSTEM_PROMPTS.md" -o "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" 2>/dev/null || echo "⚠️  No se pudo descargar HOW_TO_USE_SYSTEM_PROMPTS.md"
+    curl -fsSL "$docs_base/SYSTEM_PROMPT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT.md" || log "WARNING" "No se pudo descargar SYSTEM_PROMPT.md"
+    curl -fsSL "$docs_base/SYSTEM_PROMPT_COMPACT.md" -o "$FRAMEWORK_DIR/docs/SYSTEM_PROMPT_COMPACT.md" || log "WARNING" "No se pudo descargar SYSTEM_PROMPT_COMPACT.md"
+    curl -fsSL "$docs_base/CURSOR_COPY_PASTE.md" -o "$FRAMEWORK_DIR/docs/CURSOR_COPY_PASTE.md" || log "WARNING" "No se pudo descargar CURSOR_COPY_PASTE.md"
+    curl -fsSL "$docs_base/HOW_TO_USE_SYSTEM_PROMPTS.md" -o "$FRAMEWORK_DIR/docs/HOW_TO_USE_SYSTEM_PROMPTS.md" || log "WARNING" "No se pudo descargar HOW_TO_USE_SYSTEM_PROMPTS.md"
     
     # Documentación adicional
-    curl -fsSL "$docs_base/README.md" -o "$FRAMEWORK_DIR/docs/README.md" 2>/dev/null || echo "⚠️  No se pudo descargar docs README.md"
-    curl -fsSL "$docs_base/QUICK_START.md" -o "$FRAMEWORK_DIR/docs/QUICK_START.md" 2>/dev/null || echo "⚠️  No se pudo descargar QUICK_START.md"
-    curl -fsSL "$docs_base/git-branch-strategy.md" -o "$FRAMEWORK_DIR/docs/git-branch-strategy.md" 2>/dev/null || echo "⚠️  No se pudo descargar git-branch-strategy.md"
+    curl -fsSL "$docs_base/README.md" -o "$FRAMEWORK_DIR/docs/README.md" || log "WARNING" "No se pudo descargar docs README.md"
+    curl -fsSL "$docs_base/QUICK_START.md" -o "$FRAMEWORK_DIR/docs/QUICK_START.md" || log "WARNING" "No se pudo descargar QUICK_START.md"
+    curl -fsSL "$docs_base/git-branch-strategy.md" -o "$FRAMEWORK_DIR/docs/git-branch-strategy.md" || log "WARNING" "No se pudo descargar git-branch-strategy.md"
     
     # Verificar si se descargaron correctamente
     local downloaded=0
